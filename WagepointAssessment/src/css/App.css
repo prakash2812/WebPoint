@@ -40,13 +40,17 @@
     background-color: darkgray;
 }
 
-.loading {
+.loading,
+.page404 {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 60vh;
 }
 
-.loading p {
+.loading p,
+.page404 {
     font-size: 40px;
+    font-style: italic;
+    color: #2343;
 }
