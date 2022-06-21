@@ -1,0 +1,13 @@
+.hero-block {
+    margin: auto;
+    width: 80%;
+    padding-top: 2rem;
+    display: grid;
+    place-items: center;
+    grid-template-columns: 3fr 3fr;
+}
+.hero-block > p > img {
+    width: 80%;
+    height: 400px;
+    box-shadow: 2px 2px 10px;
+}

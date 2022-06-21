@@ -1,0 +1,42 @@
+.dashboard-container {
+    margin: auto;
+    width: 80%;
+}
+.dasboard-headings {
+    display: grid;
+    grid-template-columns: 50% 25% 5%;
+    place-items: center;
+    padding: 1rem;
+}
+.dasboard-headings > div {
+    font-size: 18px;
+    font-weight: bolder;
+    font-style: italic;
+    color: blueviolet;
+}
+
+.dashboard-data {
+    box-shadow: 1px 1px 8px;
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    place-items: center;
+    margin-bottom: 1rem;
+    font-weight: 400;
+    padding: 1rem;
+}
+.dashboard-data-prices {
+    /* display: flex; */
+    display: grid;
+    grid-template-columns: 1.3fr 6fr;
+    place-items: center;
+    gap: 0.5rem;
+}
+
+.dashboard-data:nth-child(even) {
+    background-color: #efefef;
+}
+.dashboard-data:hover {
+    color: #ffffff;
+    background-color: grey;
+    font-style: oblique;
+}

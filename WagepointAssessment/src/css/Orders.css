@@ -1,0 +1,27 @@
+.ordered-container {
+    margin: auto;
+    width: 80%;
+}
+
+.ordered-headings > div {
+    font-size: 18px;
+    font-weight: bolder;
+    font-style: italic;
+    color: blueviolet;
+}
+
+.ordered-headings,
+.orderedList {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    place-items: center;
+    padding: 1rem;
+}
+.orderedList:nth-child(odd) {
+    background-color: #efefef;
+}
+.orderedList:hover {
+    color: #ffffff;
+    background-color: grey;
+    font-style: oblique;
+}
