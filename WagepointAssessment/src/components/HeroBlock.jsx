@@ -6,10 +6,10 @@ const HeroBlock = () => {
     return (
         <div className='hero-block'>
             <p>
-                <img src={coffee} alt='coffee' />
+                <img loading='lazy' src={coffee} alt='coffee' />
             </p>
             <p>
-                <img src={cofee1} alt='cofee' />
+                <img loading='lazy' src={cofee1} alt='cofee' />
             </p>
         </div>
     );

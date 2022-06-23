@@ -1,38 +1,24 @@
 import React, { useState, useId, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { v4 as uId } from 'uuid';
+import Loader from './Loader';
 import '../css/Dashboard.css';
-import Loading from './Loading';
+import { getPricesData } from '../../reduxToolKit/slices/priceSlice';
+
 const DashBoard = () => {
-    const globalID = useId();
-    const [pricesData, setPricesData] = useState({
-        results: [],
-        loading: false,
-    });
+    const { pricesData } = useSelector((store) => store);
+    const dispatch = useDispatch();
+    const { prices, loading } = pricesData;
+
     const fetchData = async () => {
-        const data = await import('../data/prices.json');
-        return data.default;
+        await dispatch(getPricesData());
     };
     useEffect(() => {
-        setPricesData((prev) => {
-            return {
-                ...prev,
-                loading: true,
-            };
-        });
-        fetchData().then((res) => {
-            console.log('fetch data', res);
-            setPricesData((prev) => {
-                return {
-                    ...prev,
-                    results: res,
-                    loading: false,
-                };
-            });
-        });
+        fetchData();
     }, []);
 
-    const { results, loading } = pricesData;
     return loading ? (
-        <Loading />
+        <Loader />
     ) : (
         <section className='dashboard-container'>
             <div className='dasboard-headings'>
@@ -40,13 +26,13 @@ const DashBoard = () => {
                 <div className='sizes'>Sizes</div>
                 <div className='prices'>Prices</div>
             </div>
-            {results?.map(
+            {prices?.map(
                 ({
                     drink_name,
                     prices: { small, medium, large, huge, mega, ultra },
                 }) => {
                     return (
-                        <div key={globalID} className='dashboard-data'>
+                        <div key={uId()} className='dashboard-data'>
                             <div>{drink_name}</div>
                             <div className='dashboard-data-prices'>
                                 <p>

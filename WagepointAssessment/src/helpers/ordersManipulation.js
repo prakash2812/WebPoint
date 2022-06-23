@@ -1,9 +1,6 @@
-import payments from '../data/payments.json';
-import orders from '../data/orders.json';
-import prices from '../data/prices.json';
-
+import axios from 'axios';
 /* Simplified payments as hash table i.e, {'user': value} from payments source data*/
-export const userTotalPaymentsData = () => {
+export const userTotalPaymentsData = (payments) => {
     return payments.reduce((acc, curr) => {
         if (acc[curr.user]) {
             acc[curr.user] += curr.amount;
@@ -15,7 +12,7 @@ export const userTotalPaymentsData = () => {
 };
 
 /* Simplified prices as hash table format i.e., {'drinkname': value} from Prices source data*/
-export const modifiedPrices = () => {
+export const modifiedPrices = (prices) => {
     return prices.reduce((acc, curr) => {
         acc[curr.drink_name] = curr.prices;
         return acc;
@@ -34,7 +31,11 @@ i.e.,
 }
 
 */
-export const userOrderedData = (simplifiedPrices, userTotalPayments) => {
+export const userOrderedData = (
+    orders,
+    simplifiedPrices,
+    userTotalPayments
+) => {
     return orders.reduce((acc, curr) => {
         if (acc[curr.user]) {
             acc[curr.user] = {
