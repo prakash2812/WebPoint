@@ -43,3 +43,13 @@ npm install or yarn install
 ## run
 
 npm run dev
+
+## local info
+
+it runs concurrently nodemon server:4000 and react local host:3000
+
+## info while installing
+
+Incase any issues use node v14
+If any cors issue: use axios api call as relative path eg: api/v1/payments
+since proxy has been declare "http://localhost:4000"
