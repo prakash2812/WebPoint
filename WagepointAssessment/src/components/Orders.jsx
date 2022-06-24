@@ -35,11 +35,6 @@ const Orders = () => {
         }
     };
 
-    const apiHandler = async () => {
-        await dispatch(getPaymentsData());
-        await dispatch(getPricesData());
-        await dispatch(getOrdersData());
-    };
     const finalReport = () => {
         const userTotalPayments = userTotalPaymentsData(payments);
         const simplifiedPrices = modifiedPrices(prices);
@@ -63,7 +58,9 @@ const Orders = () => {
         return data;
     };
     useEffect(() => {
-        apiHandler();
+        dispatch(getPaymentsData());
+        dispatch(getPricesData());
+        dispatch(getOrdersData());
     }, []);
 
     useEffect(() => {
@@ -111,27 +108,4 @@ const Orders = () => {
     );
 };
 
-/* const mapStateToProps = (state) => {
-    console.log(' return arjun state from reducers');
-    console.log(state);
-    return {
-        ctr: state.ctr.counter,
-        showedResult: state.res.result,
-    };
-};
-
-const dispatchToProps = (dispatch) => {
-    console.log('dispatching');
-    return {
-        onChangeIncrement: () => dispatch(actionCreators.increment()),
-        onChangeDecrement: () => dispatch(actionCreators.decrement()),
-        onChangeAdd: () => dispatch(actionCreators.add(5)),
-        onChangeSub: () => dispatch(actionCreators.sub(5)),
-        onShowResult: (counterResult) =>
-            dispatch(actionCreators.showResult(counterResult)),
-        onDeleteResult: (id) => dispatch(actionCreators.deleteResult(id)),
-    };
-};
-
-export default connect(mapStateToProps, dispatchToProps)(Orders); */
 export default Orders;
