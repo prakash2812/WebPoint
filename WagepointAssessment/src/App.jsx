@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import './css/App.css';
 import GlobalRouter from './components/GlobalRouter';
+import MenuBar from './components/MenuBar';
 
 function App() {
     return (
@@ -10,30 +11,7 @@ function App() {
                 <p>Welcome to coffee barista</p>
             </header>
             <menu className='menu'>
-                <NavLink
-                    to='/'
-                    className={({ isActive }) =>
-                        isActive ? 'active' : 'disactive'
-                    }
-                >
-                    Home
-                </NavLink>
-                <NavLink
-                    to='/dashboard'
-                    className={({ isActive }) =>
-                        isActive ? 'active' : 'disactive'
-                    }
-                >
-                    Dashboard
-                </NavLink>
-                <NavLink
-                    to='/orders'
-                    className={({ isActive }) =>
-                        isActive ? 'active' : 'disactive'
-                    }
-                >
-                    OrderedLists
-                </NavLink>
+                <MenuBar />
             </menu>
             <main>
                 <GlobalRouter />
