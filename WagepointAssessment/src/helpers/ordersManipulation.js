@@ -36,26 +36,18 @@ export const userOrderedData = (
     simplifiedPrices,
     userTotalPayments
 ) => {
-    return orders.reduce((acc, curr) => {
-        if (acc[curr.user]) {
-            acc[curr.user] = {
-                ...acc[curr.user],
-                orders: [
-                    ...acc[curr.user].orders,
-                    {
-                        drink: curr.drink,
-                        size: curr.size,
-                    },
-                ],
-                orderedAmount:
-                    acc[curr.user].orderedAmount +
-                    simplifiedPrices[curr.drink][curr.size],
-            };
+    return orders.reduce((acc, { user, drink, size }) => {
+        if (acc[user]) {
+            acc[user].orderedAmount += simplifiedPrices[drink][size];
+            acc[user].orders.push({
+                drink: drink,
+                size: size,
+            });
         } else {
-            acc[curr.user] = {
-                orders: [{ drink: curr.drink, size: curr.size }],
-                orderedAmount: simplifiedPrices[curr.drink][curr.size],
-                paidAmount: userTotalPayments[curr.user],
+            acc[user] = {
+                orders: [{ drink: drink, size: size }],
+                orderedAmount: simplifiedPrices[drink][size],
+                paidAmount: userTotalPayments[user],
             };
         }
         return acc;
@@ -79,7 +71,40 @@ export const useOweData = (userOrderedList) => {
     return userOweAmount;
 };
 
-/* export const finalReport = () => {
+/* 
+export const userOrderedData = (
+    orders,
+    simplifiedPrices,
+    userTotalPayments
+) => {
+    return orders.reduce((acc, { user, drink, size }) => {
+        if (acc[user]) {
+            acc[user] = {
+                ...acc[user],
+                orders: [
+                    ...acc[user].orders,
+                    {
+                        drink: drink,
+                        size: size,
+                    },
+                ],
+                orderedAmount:
+                    acc[user].orderedAmount + simplifiedPrices[drink][size],
+            }; 
+            
+        } else {
+            acc[user] = {
+                orders: [{ drink: drink, size: size }],
+                orderedAmount: simplifiedPrices[drink][size],
+                paidAmount: userTotalPayments[user],
+            };
+        }
+        return acc;
+    }, {});
+};
+
+
+export const finalReport = () => {
         console.log('data set', data);
     let data = [];
     for (let user in userOrderedList) {
