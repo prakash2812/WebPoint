@@ -14,7 +14,7 @@ const MenuBar = () => {
             {menuLists.map(({ name, to }) => {
                 return (
                     <NavLink
-                        id={uId()}
+                        key={uId()}
                         to={to}
                         className={({ isActive }) =>
                             isActive ? 'active' : 'disactive'
